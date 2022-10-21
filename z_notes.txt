@@ -6,7 +6,15 @@
 
 Swagger 
 
-http://localhost:8081/swagger-ui/index.html
+ftgo-consumer-service
+
+-   http://localhost:8081/swagger-ui/index.html
+    http://localhost:8081/actuator/health
+
+ftgo-consumer-service
+-   http://localhost:8085/swagger-ui/index.html
+    http://localhost:8085/actuator/health
+
 http://localhost:8080/actuator/health
 
 

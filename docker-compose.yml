@@ -32,4 +32,20 @@ services:
       SPRING_DATASOURCE_USERNAME: ftgo_consumer_service_user
       SPRING_DATASOURCE_PASSWORD: ftgo_consumer_service_password
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
-      EVENTUATE_DATABASE_SCHEMA: ftgo_consumer_service
+
+  ftgo-accounting-service:
+    build: 
+      context: ./ftgo-accounting-service
+    ports:
+      - "8085:8080"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    links: 
+        - mysql-db
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db/ftgo_accounting_service
+      SPRING_DATASOURCE_USERNAME: ftgo_accounting_service_user
+      SPRING_DATASOURCE_PASSWORD: ftgo_accounting_service_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
