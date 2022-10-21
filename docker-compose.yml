@@ -1,11 +1,35 @@
 version: '3.3'
 services:
 
-  mysql:
+  mysql-db:
     build: ./mysql
     ports:
-      - 3309:3306
+      - "3306"
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
       - MYSQL_USER=mysqluser
       - MYSQL_PASSWORD=mysqlpw
+
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-umysqluser", "-pmysqlpw"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  ftgo-consumer-service:
+    build: 
+      context: ./ftgo-consumer-service
+    ports:
+      - "8081:8080"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    links: 
+        - mysql-db
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db/ftgo_consumer_service
+      SPRING_DATASOURCE_USERNAME: ftgo_consumer_service_user
+      SPRING_DATASOURCE_PASSWORD: ftgo_consumer_service_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      EVENTUATE_DATABASE_SCHEMA: ftgo_consumer_service

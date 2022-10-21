@@ -1,3 +1,21 @@
 1. Login 
     mysql -u ftgo_consumer_service_user -p
 2. List
+
+
+
+Swagger 
+
+http://localhost:8081/swagger-ui/index.html
+http://localhost:8080/actuator/health
+
+
+# Notas Desarrollo
+
+1. Primero se debe crear la funcionalidad de base de datos:
+    esta crea todas las bases de datos de los microservicios
+    mysql
+
+2. Se crea los microservicios
+    Nota: En el resositorio hay un tag llamado Microservicio_Base,descargar y compiar
+    ese microservicio, en el caso que se quiera agregar otro
