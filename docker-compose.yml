@@ -9,7 +9,8 @@ services:
       - MYSQL_ROOT_PASSWORD=rootpassword
       - MYSQL_USER=mysqluser
       - MYSQL_PASSWORD=mysqlpw
-
+    volumes:
+    - C:\volumne-docker-data-base:/var/lib/mysql  
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-umysqluser", "-pmysqlpw"]
       interval: 5s
@@ -48,4 +49,21 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db/ftgo_accounting_service
       SPRING_DATASOURCE_USERNAME: ftgo_accounting_service_user
       SPRING_DATASOURCE_PASSWORD: ftgo_accounting_service_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+
+  ftgo-order-service:
+    build: 
+      context: ./ftgo-order-service
+    ports:
+      - "8082:8080"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    links: 
+        - mysql-db
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db/ftgo_order_service
+      SPRING_DATASOURCE_USERNAME: ftgo_order_service_user
+      SPRING_DATASOURCE_PASSWORD: ftgo_order_service_password
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver

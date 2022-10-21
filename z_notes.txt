@@ -15,6 +15,10 @@ ftgo-consumer-service
 -   http://localhost:8085/swagger-ui/index.html
     http://localhost:8085/actuator/health
 
+ftgo-order-service
+-   http://localhost:8082/swagger-ui/index.html
+    http://localhost:8082/actuator/health
+
 http://localhost:8080/actuator/health
 
 
