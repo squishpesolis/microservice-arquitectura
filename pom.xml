@@ -6,13 +6,8 @@
   <packaging>pom</packaging>
   
   <modules>
-    <module>ftgo-accounting-service</module>
-    <module>ftgo-consumer-service</module>
     <module>ftgo-order-service</module>
     <module>ftgo-order-service-api-messaging</module>
     <module>ftgo-common</module>
-
-
-
   </modules>
 </project>
