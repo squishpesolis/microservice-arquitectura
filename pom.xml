@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.root-microservice</groupId>
+  <artifactId>root-microservice</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <modules>
+    <module>ftgo-accounting-service</module>
+    <module>ftgo-consumer-service</module>
+    <module>ftgo-order-service</module>
+    <module>ftgo-order-service-api-messaging</module>
+    <module>ftgo-common</module>
+
+
+
+  </modules>
+</project>
